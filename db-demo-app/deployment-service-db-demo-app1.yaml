@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: db-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-demo-app
+  template:
+    metadata:
+      labels:
+        app: db-demo-app
+    spec:
+      containers:
+      - name: db-demo-app
+        image: bhargav200004/webapp-demo:21
+      - name: mongodb
+        image: mongo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-db-demo-app
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 3000
+  selector:
+    app: db-demo-app
+  type: LoadBalancer
