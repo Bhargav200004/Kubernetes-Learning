@@ -86,3 +86,10 @@ The db-demo-app service is configured as a LoadBalancer on port 8080.
 
 URL: ``` http://localhost:8080 ```
 API: ``` http://localhost:8080/emails ```
+
+## 📝 Key Learnings
+1. ConfigMaps: Moving environment variables like MONGO_HOST out of the code allows for easier environment switching.
+
+2. Persistent Volumes: Data in Kubernetes is ephemeral by default. Using PV/PVCs is critical for databases to prevent data loss when pods crash.
+
+3. Service Discovery: Kubernetes Services allow pods to communicate using stable DNS names (e.g., service-mongodb) instead of changing IP addresses.
